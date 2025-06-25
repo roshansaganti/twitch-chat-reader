@@ -51,3 +51,58 @@ The chat messages are displayed in a **Tkinter**-based graphical user interface 
 - **Timeout Errors**: Resolves connection timeout issues by using the PING-PONG mechanism to maintain a stable IRC connection.
 - **Connection Drops**: Monitors the connection to ensure that dropped IRC connections are re-established automatically to maintain continuous message listening.
 
+## Local Environment Setup
+
+Create virtual environment:
+
+```
+python -m venv .venv
+```
+
+Activate virtual environment:
+
+```
+# Windows
+. .venv/Scripts/activate
+
+# MacOS/Linux
+. .venv/bin/activate
+```
+
+Install packages from `requirements.txt`:
+
+```
+pip install -r requirements.txt
+```
+
+Populate `config.py` with necessary details:
+
+```
+class Config:
+    CLIENT_ID = "your_twitch_client_id"  <--
+    CLIENT_SECRET = "your_twitch_client_secret"  <--
+    REDIRECT_URI = "http://localhost:3000"
+    IRC_TOKEN = "oauth:your_oauth_token"  # Twitch Chat OAuth Token
+    USERNAME = "your_twitch_username"  <--
+    CHANNEL = "your_twitch_channel"  <--
+    PORT = 3000
+    SCOPE = ['user:read:email', 'chat:read']
+```
+
+Run:
+
+```
+python main.py
+```
+
+## Troubleshooting
+
+### ERROR: No matching distribution found for tkinter
+
+On Windows, most Python installations already have `tkinter` installed. If you still get the error, you may need to check if you are installing Python with the option `tcl/tk and IDLE` enabled.
+
+For MacOS/Linux, the package may need to be installed via the OS:
+
+- https://python-forum.io/thread-37886.html
+- https://pythoneo.com/no-module-named-tkinter/
+- https://tecadmin.net/error-no-matching-distribution-found-for-tkinter-resolved/
