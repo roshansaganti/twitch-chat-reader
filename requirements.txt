@@ -1,0 +1,4 @@
+asyncio
+requests
+requests_oauthlib
+websocket-client
