@@ -45,7 +45,7 @@ class TwitchApp:
         try:
             auth_url = self.api.get_authorization_url()
             webbrowser.open(auth_url)
-            messagebox.showinfo("Authorization", "Please authorize the app in the opened browser window.")
+            # messagebox.showinfo("Authorization", "Please authorize the app in the opened browser window.")
             auth_code = self.api.start_local_http_server()
             if not auth_code:
                 messagebox.showerror("Error", "Failed to retrieve authorization code.")
