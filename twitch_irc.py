@@ -1,9 +1,10 @@
 import socket
 import threading
 
+
 class TwitchIRC:
     def __init__(self, token, username, channel, on_message_callback):
-        self.server = 'irc.chat.twitch.tv'
+        self.server = "irc.chat.twitch.tv"
         self.port = 6667
         self.token = f"oauth:{token}"  # Token 'oauth:' ile başlatılmalı
         self.username = username
@@ -16,9 +17,9 @@ class TwitchIRC:
             print(f"Connecting to Twitch IRC channel: {self.channel} ...")
             self.sock.connect((self.server, self.port))
             print("Connected!")
-            self.sock.send(f"PASS {self.token}\n".encode('utf-8'))
-            self.sock.send(f"NICK {self.username}\n".encode('utf-8'))
-            self.sock.send(f"JOIN {self.channel}\n".encode('utf-8'))
+            self.sock.send(f"PASS {self.token}\n".encode("utf-8"))
+            self.sock.send(f"NICK {self.username}\n".encode("utf-8"))
+            self.sock.send(f"JOIN {self.channel}\n".encode("utf-8"))
             print(f"Joined channel {self.channel}")
             threading.Thread(target=self.receive_messages).start()
         except Exception as e:
@@ -28,9 +29,9 @@ class TwitchIRC:
         try:
             print("Receiving messages...")
             while True:
-                response = self.sock.recv(2048).decode('utf-8')
-                if response.startswith('PING'):
-                    self.sock.send("PONG\n".encode('utf-8'))
+                response = self.sock.recv(2048).decode("utf-8")
+                if response.startswith("PING"):
+                    self.sock.send("PONG\n".encode("utf-8"))
                 else:
                     self.parse_message(response)
         except Exception as e:

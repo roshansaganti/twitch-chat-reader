@@ -6,4 +6,4 @@ class Config:
     USERNAME = "your_twitch_username"
     CHANNEL = "your_twitch_channel"
     PORT = 3000
-    SCOPE = ['user:read:email', 'chat:read']
+    SCOPE = ["user:read:email", "chat:read"]
